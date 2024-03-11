@@ -18,8 +18,11 @@ public class SpringJoinBoxMove : MonoBehaviour
         startLocation = transform.position;
     }
 
+
+    float changer = 1f;
+
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         Debug.Log(Vector3.Distance(startLocation, transform.position));
@@ -27,9 +30,10 @@ public class SpringJoinBoxMove : MonoBehaviour
         if (Vector3.Distance(startLocation, transform.position) > distance)
         {
             startLocation = transform.position;
-            transform.Rotate(new Vector3(0,180,9), Space.Self);
+            //transform.Rotate(new Vector3(0,180,9), Space.Self);
+            changer = changer * -1;
         }
 
-        this.gameObject.transform.Translate(Vector3.back * Time.deltaTime * speed);
+        this.gameObject.transform.Translate(Vector3.back * Time.deltaTime * speed * changer);
     }
 }
